@@ -20,7 +20,21 @@ Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/slidi
 
 == Screenshots ==
 
-Screenshots? Why screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+
+== Change Log ==
+
+### 1.0rc5
+
+Fixes an issue with the print preview. (Notes were not initially collapsed in print preview. Reported by Mark Adams).
+
+### 1.0rc4, 1.0rc3
+
+Slight changes in the readme file only.
+
+### 1.0rc2
+
+Initial public release
 
 == License ==
 
@@ -48,4 +62,4 @@ This was a deliberate decision, with the following reasoning:
 
 = I love your work, are you available for hire? =
 
-Yes I am. [Contact me](http://hackadelic.com/contact) to "talk turkey" :)
+Yes I am. [Contact me](http://hackadelic.com/contact) to "talk turkey" :) 

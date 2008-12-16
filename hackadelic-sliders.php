@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.0rc4
+Version: 1.0rc5
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -9,11 +9,11 @@ Author URI: http://hackadelic.com
 */
 
 add_action('wp_print_scripts', 'hackadelic_sliders_scripts');
+add_action('wp_footer', 'hackadelic_print_init_js');
 add_filter('the_content', 'hackadelic_sliders_prefilter', 5);
 add_filter('the_content', 'hackadelic_sliders_postfilter', 55);
 add_shortcode('slider', 'hackadelic_shortcode_slider');
 add_shortcode('slider_usage', 'hackadelic_shortcode_slider_usage');
-//add_shortcode('sliderButton', 'hackadelic_shortcode_sliderButton');
 
 //---------------------------------------------------------------------------------------------
 
@@ -24,6 +24,18 @@ $priorID = 0;
 
 function hackadelic_sliders_scripts() {
 	wp_enqueue_script('jquery');
+}
+
+//---------------------------------------------------------------------------------------------
+
+function hackadelic_print_init_js() {
+?>
+<script>
+jQuery(document).ready(function() {
+	jQuery('div.hackadelic-sliderPanel').show().hide();
+});
+</script>
+<?php
 }
 
 //---------------------------------------------------------------------------------------------
@@ -39,7 +51,7 @@ function hackadelic_sliders_prefilter($content) {
 function hackadelic_sliders_postfilter($content) {
 	global $sliderID, $priorID;
 	if ($sliderID == $priorID) return $content;
-	return preg_replace('@<p>(.*?)</p>@s', '\1<p></p>', $content);
+	return preg_replace('@<p>(.+?)</p>@s', '\1<p></p>', $content);
 }
 
 //---------------------------------------------------------------------------------------------
