@@ -33,7 +33,7 @@ A total rewrite:
  * Note paragraphs can be individually styled.
  * Note paragraph styles can differ from surrounding paragraph style.
 
-Note: The styling is done the usual way in the visual editor. There's no extra UI for writing sliding notes (yet). There’s an example in [the 1.1 release announcement](http://hackadelic.com/sliding-notes-major-upgrade).
+Note: The styling is done the usual way in the visual editor. There's no extra UI for writing sliding notes (yet). There is an example in [the 1.1 release announcement](http://hackadelic.com/sliding-notes-major-upgrade).
 
 #### 1.0rc5
 
