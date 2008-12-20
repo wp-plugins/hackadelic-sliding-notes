@@ -24,15 +24,26 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
-### 1.0rc5
+#### 1.1.0
+
+A total rewrite:
+
+* Switch from a buggy Shortcode API to "good old" Filter API. (See [this post on that](http://hackadelic.com/shortcode-shortcomings).)
+* Improved handling of multi-paragraph notes, enabling the following features:
+ * Note paragraphs can be individually styled.
+ * Note paragraph styles can differ from surrounding paragraph style.
+
+Note: The styling is done the usual way in the visual editor. There's no extra UI for writing sliding notes (yet).
+
+#### 1.0rc5
 
 Fixes an issue with the print preview. (Notes were not initially collapsed in print preview. Reported by Mark Adams).
 
-### 1.0rc4, 1.0rc3
+#### 1.0rc4, 1.0rc3
 
 Slight changes in the readme file only.
 
-### 1.0rc2
+#### 1.0rc2
 
 Initial public release
 

@@ -1,58 +1,16 @@
 <?php 
+//---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.0rc5
+Version: 1.1.0
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
 Author URI: http://hackadelic.com
 */
+//---------------------------------------------------------------------------------------------
 
-add_action('wp_print_scripts', 'hackadelic_sliders_scripts');
-add_action('wp_footer', 'hackadelic_print_init_js');
-add_filter('the_content', 'hackadelic_sliders_prefilter', 5);
-add_filter('the_content', 'hackadelic_sliders_postfilter', 55);
-add_shortcode('slider', 'hackadelic_shortcode_slider');
 add_shortcode('slider_usage', 'hackadelic_shortcode_slider_usage');
-
-//---------------------------------------------------------------------------------------------
-
-$sliderID = 0;
-$priorID = 0;
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_sliders_scripts() {
-	wp_enqueue_script('jquery');
-}
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_print_init_js() {
-?>
-<script>
-jQuery(document).ready(function() {
-	jQuery('div.hackadelic-sliderPanel').show().hide();
-});
-</script>
-<?php
-}
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_sliders_prefilter($content) {
-	global $sliderID, $priorID;
-	$priorID = $sliderID;
-	return $content;
-}
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_sliders_postfilter($content) {
-	global $sliderID, $priorID;
-	if ($sliderID == $priorID) return $content;
-	return preg_replace('@<p>(.+?)</p>@s', '\1<p></p>', $content);
-}
 
 //---------------------------------------------------------------------------------------------
 
@@ -65,28 +23,68 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 //---------------------------------------------------------------------------------------------
 
-function hackadelic_shortcode_slider($atts, $content=null) {
-	extract(shortcode_atts(array(
-		'title' => '+/-',
-		), $atts ));
+class HackadelicSliders
+{
+	var $sliderID = 0;
 
-	global $sliderID;
-	++$sliderID;
+	function initialize() {
+		add_action('wp_print_scripts', array($this, 'enqueueScripts'));
+		add_filter('the_content', array($this, 'processContent'), 12);
+	}
 
-	$clickCode = "jQuery('#hackadelic-sliderPanel-$sliderID').slideToggle('fast')";
+	function enqueueScripts() {
+		wp_enqueue_script('jquery');
+	}
 
-	$panelTag = 'div'; //preg_match('/\<\/?(p)>/i', $content) ? 'div' : 'span';
+	function processContent($content) {
+		$this->sliderID = 0;
+		$this->notes = array();
+		$regex1 = hackadelic_slider_regex('"');
+		$regex2 = hackadelic_slider_regex("'");
+		$content = preg_replace_callback(
+			array($regex1, $regex2),
+			array($this, 'subst'),
+			$content );
+		return $content;
+	}
 
-	if ($notestyle) $notestyle = ' style="'.$notestyle.'"';
+	function subst($matches) {
+		global $id; // the post ID is globally set by WordPress
+		$title = $matches[1]; $content = $matches[2];
 
-	$content = ''
-		.'<a href="javascript:;" class="hackadelic-sliderButton" '
-		."title=\"expand/collapse slider: $title\""
-		."onclick=\"$clickCode\" title=\"expand/collapse slider: $title.\">$title&raquo;</a>"
-		."<$panelTag class=\"hackadelic-sliderPanel $noteclass\" id=\"hackadelic-sliderPanel-$sliderID\"$notestyle>$content"
-		."</$panelTag>"
-		;
-	return $content;
+		$sliderID = ++$this->sliderID;
+		$sliderID = "hackadelic-sliderPanel-$id-$sliderID";
+		$clickCode = "jQuery('#$sliderID').slideToggle('fast')";
+		if (preg_match('@</?p.*?>@i', $content)) {
+			$content = "<p>${content}</p>";
+			$content = preg_replace(
+				array('@^<p.*?></p>@i', '@<p.*?></p>$@i'),
+				'',
+				$content );
+		}
+
+		$substitute = ''
+			.'<a href="javascript:;" class="hackadelic-sliderButton" onclick="'.$clickCode.'"'
+			.' title="expand/collapse slider: '.$title.'">'.$title.'</a>'
+			.'<span class="hackadelic-sliderPanel" style="display:none" id="'.$sliderID.'">'
+			.$content
+			.'</span>'
+			;
+		return $substitute;
+	}
+}
+
+//---------------------------------------------------------------------------------------------
+
+if (!is_admin()) {
+	$hackadelicSliders = new HackadelicSliders();
+	$hackadelicSliders->initialize();
+}
+
+//---------------------------------------------------------------------------------------------
+
+function hackadelic_slider_regex($q) {
+	return '@\[slider\s*title\s*=\s*'.$q.'(?P<title>.*?)'.$q.'\s*](?P<content>.*?)\[/slider]@s';
 }
 
 // ===========================================================================
@@ -97,24 +95,24 @@ add_action('admin_menu', 'hackadelic_sliders_addAdminMenu');
 
 //---------------------------------------------------------------------------------------------
 
-$pluginTitle = 'Hackadelic Sliding Notes';
+$hackadelic_sliders_pluginTitle = 'Hackadelic Sliding Notes';
 
 //---------------------------------------------------------------------------------------------
 
 function hackadelic_sliders_addAdminMenu() {
-  global $pluginTitle;
+  global $hackadelic_sliders_pluginTitle;
   add_options_page(
-    $pluginTitle, $pluginTitle, 10, 
+    $hackadelic_sliders_pluginTitle, $hackadelic_sliders_pluginTitle, 10, 
     __FILE__, 'hackadelic_sliders_displayAdminPage');
 }
 
 //---------------------------------------------------------------------------------------------
 
 function hackadelic_sliders_displayAdminPage() {
-global $pluginTitle;
+global $hackadelic_sliders_pluginTitle;
 ?>
 <div class="wrap">
-<h2><?php echo $pluginTitle ?></h2>
+<h2><?php echo $hackadelic_sliders_pluginTitle ?></h2>
 <p>
 To customize the look of your sliding notes,
 integrate the
