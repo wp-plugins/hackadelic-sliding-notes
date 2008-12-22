@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 1.1.0
+Stable tag: 1.0rc5
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
@@ -23,6 +23,8 @@ Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/slidi
 Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
 
 == Change Log ==
+
+ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
 
 #### 1.1.1
 
