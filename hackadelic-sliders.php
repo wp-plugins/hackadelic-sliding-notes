@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.1.0
+Version: 1.1.1
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -28,8 +28,8 @@ class HackadelicSliders
 	var $sliderID = 0;
 
 	function initialize() {
-		add_action('wp_print_scripts', array($this, 'enqueueScripts'));
-		add_filter('the_content', array($this, 'processContent'), 12);
+		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
+		add_filter('the_content', array(&$this, 'processContent'), 12);
 	}
 
 	function enqueueScripts() {
@@ -43,7 +43,7 @@ class HackadelicSliders
 		$regex2 = hackadelic_slider_regex("'");
 		$content = preg_replace_callback(
 			array($regex1, $regex2),
-			array($this, 'subst'),
+			array(&$this, 'subst'),
 			$content );
 		return $content;
 	}

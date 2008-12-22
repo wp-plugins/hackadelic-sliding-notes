@@ -24,6 +24,10 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
+#### 1.1.1
+
+* Compatibility fixes with older PHP versions
+
 #### 1.1.0
 
 A total rewrite:
