@@ -35,22 +35,6 @@ function toggleSlider(target, source) {
 		s.replaceWith('');
 	}
 	t.slideToggle('fast');
-
-	//t = jQuery(target);
-	//if ( ! t.text() ) {
-	//	s = jQuery(source);
-	//	t.html( s.html() );
-	//	s.replaceWith('');
-	//}
-	//t.slideToggle('fast');
-
-	//t = jQuery(target);
-	//if (t.css('display') == 'none') {
-	//	s = jQuery(source).html();
-	//	t.html(s).slideDown('fast');
-	//}
-	//else
-	//	t.slideUp('fast').html('');
 }
 
 jQuery(document).ready(function() {
