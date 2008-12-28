@@ -24,9 +24,8 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 function hackadelic_sliders_print_js() {
 ?>
+<!-- Hackadelic Sliding Notes, by http://hackadelic.com -->
 <script type="text/javascript">
-//-- "Hackadelic Sliding Notes", http://hackadelic.com --
-
 function toggleSlider(target, source) {
 	t = jQuery(target);
 	if ( !t.data('hackadelized') ) {
@@ -49,7 +48,10 @@ jQuery(document).ready(function() {
 
 class HackadelicSliders
 {
-	var $sliderID = 0;
+	var $BTNPFX = ''; // Slider button prefix
+	var $BTNSFX = '&raquo;'; // Slider button suffix
+
+	var $sliderID = 0; // unique per each page view, not globally unique
 	var $notes = '';
 
 	//-------------------------------------------------------------------------------------
@@ -59,6 +61,7 @@ class HackadelicSliders
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
+		add_filter('widget_text', array(&$this, 'postProcessContent'), 12);
 	}
 
 	//-------------------------------------------------------------------------------------
@@ -70,8 +73,7 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function preProcessContent($content) {
-		$this->sliderID = 0;
-		$this->notes = '';
+		$this->notes = ''; // reset notes for this unit
 		return $content;
 	}
 
@@ -87,17 +89,16 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function processSlider($title, $content) {
-		global $id; // the post ID is globally set by WordPress
 
 		$sliderID = ++$this->sliderID;
-		$noteID = "hackadelic-sliderNote-$id-$sliderID";
-		$sliderID = "hackadelic-sliderPanel-$id-$sliderID";
+		$noteID = "hackadelic-sliderNote-$sliderID";
+		$sliderID = "hackadelic-sliderPanel-$sliderID";
 		$clickCode = "toggleSlider('#$sliderID', '#$noteID')";
 
 		if (preg_match('@</?p.*?>@si', $content)) {
 			$content = "<p>${content}</p>";
 			$content = preg_replace(
-				array('@^<p.*?></p>@i', '@<p.*?></p>$@i'),
+				'@<p.*?></p>$@i',
 				'',
 				$content );
 		}
@@ -108,7 +109,7 @@ class HackadelicSliders
 		$substitute = ''
 			//.'<span class="hackadelic-slider>'
 			.'<a href="javascript:;" class="hackadelic-sliderButton" onclick="'.$clickCode.'"'
-			.' title="expand/collapse slider: '.$title.'">'.$title.'</a> '
+			.' title="expand/collapse slider: '.$title.'">'.$this->BTNPFX.$title.$this->BTNSFX.'</a> '
 			.'<span class="hidden hackadelic-sliderPanel" id="'.$sliderID.'">'
 			.'</span>'
 			//.'</span>'
