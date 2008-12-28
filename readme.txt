@@ -26,11 +26,14 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
 
-#### 1.2.0 / 1.2.1
+#### 1.2.1
+
+* *Widget-ready* (for usage within text widgets in the sidebar)
+
+#### 1.2.0
 
 * Fixed cross-browser issue!
 * Fixed IE issue with missing space between slider button and surrounding text
-* *Widget-ready* (for usage within text widgets in the sidebar)
 
 #### 1.1.1 (internal release only)
 
