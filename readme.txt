@@ -24,8 +24,6 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
-ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
-
 #### 1.2.1
 
 * *Widget-ready* (for usage within text widgets in the sidebar)
@@ -40,6 +38,7 @@ ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.
 * Compatibility fixes with older PHP versions
 
 #### 1.1.0
+ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
 
 A total rewrite:
 
