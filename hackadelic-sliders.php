@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.3.0rc1
+Version: 1.3.0rc2
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -65,8 +65,6 @@ class HackadelicSliders
 		extract(shortcode_atts(array(
 			'title' => $this->DEFAULT_TITLE,
 			'type' => '',
-			//'bclass' => '',
-			//'nclass' => '',
 			'bstyle' => '',
 			'nstyle' => '',
 			'shortcodes' => null,
@@ -97,8 +95,6 @@ class HackadelicSliders
 
 		$this->_xclass($type);
 		$bclass = $nclass = $type;
-		//$this->_xclass($bclass);
-		//$this->_xclass($nclass);
 		$this->_xstyle($bstyle);
 		$this->_xstyle($nstyle);
 
@@ -108,7 +104,7 @@ class HackadelicSliders
 			.'onclick="'.$clickCode.'"'
 			.' title="' . $this->TITLE_PREFX . $title.'">'
 			.$this->BUTTON_PREFIX . $title . $this->BUTTON_SUFFIX . '</a> '
-			.'<span class="hidden hackadelic-sliderPanel'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
+			.'<span class="hackadelic-sliderPanel'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
 			.'</span>'
 			//.'</span>'
 			;
@@ -132,6 +128,7 @@ class HackadelicSliders
 
 	function embedPageScriptCode() {
 ?>
+<?php if ($this->notes) : ?>
 <!-- Hackadelic Sliding Notes, by http://hackadelic.com -->
 <script type="text/javascript">
 function toggleSlider(target, source) {
@@ -152,11 +149,29 @@ function initSlider(target, source) {
 	return t;
 }
 
-jQuery(document).ready(function() {
-	jQuery('.hackadelic-sliderPanel.hidden').show().hide();<?php echo $this->initjs ?>
+(function(){<?php echo $this->initjs ?>
 
-	jQuery('span.hackadelic-sliderPanel.auto-expand').slideDown('fast');
+	//jQuery('.hackadelic-sliderPanel').addClass('block').hide().removeClass('hidden');
+	//jQuery('.hackadelic-sliderPanel.auto-expand').slideDown(0.1);
+	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').addClass('block').hide().removeClass('hidden');
+	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('hidden');
+})();
+
+<?php /*
+jQuery(document).ready(function() {
+	jQuery('.hidden').hide();<?php echo $this->initjs ?>
+
+	jQuery('.hackadelic-sliderPanel').addClass('block').removeClass('hidden');
+	jQuery('.hackadelic-sliderPanel.auto-expand').slideDown(0.1);
+
+
+	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').hide();
+	jQuery('.hidden').hide();<?php echo $this->initjs ?>
+
+	jQuery('.hackadelic-sliderPanel').addClass('block');
 });
+*/?>
+<?php endif ?>
 </script>
 <?php
 	}
