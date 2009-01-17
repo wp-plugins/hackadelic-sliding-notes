@@ -24,6 +24,18 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
+#### 1.3.0
+
+For details, see [the release announcement](http://hackadelic.com/say-hello-to-sliding-notes-1-3 "Announcing Sliding Notes 1.3").
+
+* Many new shortcode arguments for easy integration into different website/usage concepts:
+  * inline CSS styles
+  * custom note types
+  * auto-expanded notes
+  * embedding shortcodes inside sliding notes
+* Improved interoperability with other JavaScript/AJAX libraries
+* Various clean-ups and fixes
+
 #### 1.2.1
 
 * *Widget-ready* (for usage within text widgets in the sidebar)
