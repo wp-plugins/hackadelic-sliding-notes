@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.3.0rc2
+Version: 1.3.0rc3
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -42,7 +42,7 @@ class HackadelicSliders
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
-		add_filter('widget_text', array(&$this, 'preProcessContent'), 10);
+		//add_filter('widget_text', array(&$this, 'preProcessContent'), 10);
 		add_filter('widget_text', array(&$this, 'postProcessContent'), 12);
 	}
 
@@ -104,7 +104,7 @@ class HackadelicSliders
 			.'onclick="'.$clickCode.'"'
 			.' title="' . $this->TITLE_PREFX . $title.'">'
 			.$this->BUTTON_PREFIX . $title . $this->BUTTON_SUFFIX . '</a> '
-			.'<span class="hackadelic-sliderPanel'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
+			.'<span class="hackadelic-sliderPanel hidden'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
 			.'</span>'
 			//.'</span>'
 			;
