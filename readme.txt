@@ -4,13 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 1.2.1
+Stable tag: 1.3.1
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 == Description ==
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
+
+[The release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3") provides in-depth information about the 1.3 release.
 
 == Installation ==
 
@@ -24,7 +26,23 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
-ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
+#### 1.3.1 - Quick Fix Release
+
+A small glitch had slipped into the prior release that caused sliding notes to be "dead" (not expandable) on the fron page. This version fixes it.
+
+#### 1.3.0 - 'Presidential Oath' Release
+
+This release is packed with features that greatly ease the integration into existing website styles and concepts, as well as the combination of different usage patterns on the same site.
+
+* Many new shortcode arguments for easy integration into different website/usage concepts:
+  * inline CSS styles
+  * custom note types
+  * auto-expanded notes
+  * embedding shortcodes inside sliding notes
+* Improved interoperability with other JavaScript/AJAX libraries
+* Various cleanups and fixes
+
+For details, see [the release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3").
 
 #### 1.2.1
 
@@ -40,6 +58,7 @@ ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.
 * Compatibility fixes with older PHP versions
 
 #### 1.1.0
+ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
 
 A total rewrite:
 

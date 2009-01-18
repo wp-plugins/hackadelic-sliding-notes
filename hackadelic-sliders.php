@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.2.1
+Version: 1.3.1
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -11,56 +11,40 @@ Author URI: http://hackadelic.com
 //---------------------------------------------------------------------------------------------
 
 add_shortcode('slider_usage', 'hackadelic_shortcode_slider_usage');
-add_action('wp_footer', 'hackadelic_sliders_print_js');
 
 //---------------------------------------------------------------------------------------------
 
 function hackadelic_shortcode_slider_usage($atts, $content=null) {
-	return '<code>'
-		.'[slider title=&quot;<em>slider button title</em>&quot;]'
-		.'<em>sliding note content</em>[/slider]</code>'
+	return '<pre>'
+		.'[slider title=&quot;<em>slider button title</em>&quot;]<em>sliding note content</em>[/slider]'
+		.'</pre>'
 		;
 }
-
-function hackadelic_sliders_print_js() {
-?>
-<!-- Hackadelic Sliding Notes, by http://hackadelic.com -->
-<script type="text/javascript">
-function toggleSlider(target, source) {
-	t = jQuery(target);
-	if ( !t.data('hackadelized') ) {
-		s = jQuery(source);
-		t.html( s.html() ).data('hackadelized', true);
-		s.replaceWith('');
-	}
-	t.slideToggle('fast');
-}
-
-jQuery(document).ready(function() {
-	jQuery('.hidden').show().hide();
-});
-</script>
-<?php
-}
-
 
 //---------------------------------------------------------------------------------------------
 
 class HackadelicSliders
 {
-	var $BTNPFX = ''; // Slider button prefix
-	var $BTNSFX = '&raquo;'; // Slider button suffix
+	var $VERSION = '1.3.1'; // Make sure this is equal to the one in the plug-in header!
+
+	var $DEFAULT_TITLE = '+/-'; // Slider button title
+	var $TITLE_PREFX = 'expand/collapse slider: ';
+	var $BUTTON_PREFIX = ''; // Slider button prefix
+	var $BUTTON_SUFFIX = '&raquo;'; // Slider button suffix
 
 	var $sliderID = 0; // unique per each page view, not globally unique
 	var $notes = '';
+	var $initjs = '';
 
 	//-------------------------------------------------------------------------------------
 
 	function initialize() {
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
+		add_action('wp_footer', array(&$this, 'embedPageScriptCode'));
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
+		// DO NOT preProcessContent with widget_text !
 		add_filter('widget_text', array(&$this, 'postProcessContent'), 12);
 	}
 
@@ -81,14 +65,12 @@ class HackadelicSliders
 
 	function doShortcode($atts, $content=null) {
 		extract(shortcode_atts(array(
-			'title' => '+/-',
+			'title' => $this->DEFAULT_TITLE,
+			'type' => '',
+			'bstyle' => '',
+			'nstyle' => '',
+			'shortcodes' => null,
 			), $atts ));
-		return $this->processSlider($title, $content);
-	}
-
-	//-------------------------------------------------------------------------------------
-
-	function processSlider($title, $content) {
 
 		$sliderID = ++$this->sliderID;
 		$noteID = "hackadelic-sliderNote-$sliderID";
@@ -103,14 +85,26 @@ class HackadelicSliders
 				$content );
 		}
 
-		$note = '<DIV id="'.$noteID.'" class="hidden hackadelic-sliderPanel">'.$content.'</DIV>';
+		if ($shortcodes == 'on')
+			$content = do_shortcode($content);
+
+		//$note = '<DIV id="'.$noteID.'" class="hidden hackadelic-sliderPanel">'.$content.'</DIV>';
+		$note = '<DIV id="'.$noteID.'" class="hidden">'.$content.'</DIV>';
 		$this->notes .= $note;
+		$this->initjs .= "\n	initSlider('#$sliderID', '#$noteID');";
+
+		$this->_xclass($type);
+		$bclass = $nclass = $type;
+		$this->_xstyle($bstyle);
+		$this->_xstyle($nstyle);
 
 		$substitute = ''
 			//.'<span class="hackadelic-slider>'
-			.'<a href="javascript:;" class="hackadelic-sliderButton" onclick="'.$clickCode.'"'
-			.' title="expand/collapse slider: '.$title.'">'.$this->BTNPFX.$title.$this->BTNSFX.'</a> '
-			.'<span class="hidden hackadelic-sliderPanel" id="'.$sliderID.'">'
+			.'<a href="javascript:;" class="hackadelic-sliderButton'.$bclass.'"'.$bstyle
+			.'onclick="'.$clickCode.'"'
+			.' title="' . $this->TITLE_PREFX . $title.'">'
+			.$this->BUTTON_PREFIX . $title . $this->BUTTON_SUFFIX . '</a> '
+			.'<span class="hackadelic-sliderPanel hidden'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
 			.'</span>'
 			//.'</span>'
 			;
@@ -121,6 +115,50 @@ class HackadelicSliders
 
 	function postProcessContent($content) {
 		return $content . $this->notes;
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	function _xclass(&$class) { if ($class) $class = ' '.$class; }
+	function _xstyle(&$style) { if ($style) $style = ' style="'.$style.'"'; }
+
+	//-------------------------------------------------------------------------------------
+	// NOTE: Sliders need to be inited right away, 
+	// so other js libs can do their magic on the *target*, not the source element.
+
+	function embedPageScriptCode() {
+?>
+<?php if ($this->initjs) : ?>
+<!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
+<script type="text/javascript">
+function toggleSlider(target, source) {
+<?php /*
+	var t = initSlider(target, source)
+	t.slideToggle('fast');
+*/?>
+	jQuery(target).slideToggle('fast');
+}
+
+function initSlider(target, source) {
+	var t = jQuery(target);
+	if ( !t.data('hackadelized') ) {
+		var s = jQuery(source);
+		t.html( s.html() ).data('hackadelized', true);
+		s.replaceWith('');
+	}
+	return t;
+}
+
+(function(){<?php echo $this->initjs ?>
+
+	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').addClass('block').hide().removeClass('hidden');
+	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('hidden');
+})();
+
+</script>
+<!-- END Hackadelic Sliding Notes -->
+<?php endif ?>
+<?php
 	}
 }
 
@@ -164,6 +202,10 @@ integrate the
 from the
 <a href="http://hackadelic.com/solutions/wordpress/sliding-notes">plugin homepage</a>
 into your stylesheet(s), and adjust it as you see fit.
+</p>
+<p><em><strong>Important note:</strong>
+Plug-in updates may require changes in the CSS, so please align your CSS with the <a href="http://hackadelic.com/solutions/wordpress/sliding-notes#sample-css">sample CSS code</a> whenever you upgrade.
+</em>
 </p>
 <p>
 If you don't want to mess around with your theme's <code>style.css</code> file,
