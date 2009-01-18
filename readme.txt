@@ -24,9 +24,9 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
-#### 1.3.0
+#### 1.3.0 - “Presidential Oath” Release
 
-For details, see [the release announcement](http://hackadelic.com/say-hello-to-sliding-notes-1-3 "Announcing Sliding Notes 1.3").
+This release is packed with features that greatly ease the integration into existing website styles and concepts, as well as the combination of different usage patterns on the same site.
 
 * Many new shortcode arguments for easy integration into different website/usage concepts:
   * inline CSS styles
@@ -34,7 +34,9 @@ For details, see [the release announcement](http://hackadelic.com/say-hello-to-s
   * auto-expanded notes
   * embedding shortcodes inside sliding notes
 * Improved interoperability with other JavaScript/AJAX libraries
-* Various clean-ups and fixes
+* Various cleanups and fixes
+
+For details, see [the release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3").
 
 #### 1.2.1
 

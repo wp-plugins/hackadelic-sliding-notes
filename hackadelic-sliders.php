@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.3.0rc3
+Version: 1.3.0
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -15,9 +15,9 @@ add_shortcode('slider_usage', 'hackadelic_shortcode_slider_usage');
 //---------------------------------------------------------------------------------------------
 
 function hackadelic_shortcode_slider_usage($atts, $content=null) {
-	return '<code>'
-		.'[slider title=&quot;<em>slider button title</em>&quot;]'
-		.'<em>sliding note content</em>[/slider]</code>'
+	return '<pre>'
+		.'[slider title=&quot;<em>slider button title</em>&quot;]<em>sliding note content</em>[/slider]'
+		.'</pre>'
 		;
 }
 
@@ -42,7 +42,7 @@ class HackadelicSliders
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
-		//add_filter('widget_text', array(&$this, 'preProcessContent'), 10);
+		// DO NOT preProcessContent with widget_text !
 		add_filter('widget_text', array(&$this, 'postProcessContent'), 12);
 	}
 
@@ -83,8 +83,6 @@ class HackadelicSliders
 				$content );
 		}
 
-		//if ($shortcodes && preg_match('@(on|y(es)?|t(rue)?|1)$@i', $shortcodes))
-		//if ($shortcodes && strcasecmp('on', $shortcodes) != 0) {
 		if ($shortcodes == 'on')
 			$content = do_shortcode($content);
 
@@ -151,26 +149,10 @@ function initSlider(target, source) {
 
 (function(){<?php echo $this->initjs ?>
 
-	//jQuery('.hackadelic-sliderPanel').addClass('block').hide().removeClass('hidden');
-	//jQuery('.hackadelic-sliderPanel.auto-expand').slideDown(0.1);
 	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').addClass('block').hide().removeClass('hidden');
 	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('hidden');
 })();
 
-<?php /*
-jQuery(document).ready(function() {
-	jQuery('.hidden').hide();<?php echo $this->initjs ?>
-
-	jQuery('.hackadelic-sliderPanel').addClass('block').removeClass('hidden');
-	jQuery('.hackadelic-sliderPanel.auto-expand').slideDown(0.1);
-
-
-	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').hide();
-	jQuery('.hidden').hide();<?php echo $this->initjs ?>
-
-	jQuery('.hackadelic-sliderPanel').addClass('block');
-});
-*/?>
 <?php endif ?>
 </script>
 <?php
