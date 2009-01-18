@@ -12,6 +12,8 @@ Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
+[The release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3") provides in-depth information about the 1.3 release.
+
 == Installation ==
 
 1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
