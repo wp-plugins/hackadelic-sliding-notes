@@ -26,7 +26,7 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
-#### 1.3.1 - Quick Fix Release
+#### 1.3.1 - 'Presidential Bugfix' Release ;-)
 
 A small glitch had slipped into the prior release that caused sliding notes to be "dead" (not expandable) on the fron page. This version fixes it.
 
