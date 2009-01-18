@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.3.0
+Version: 1.3.1
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -25,6 +25,8 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 class HackadelicSliders
 {
+	var $VERSION = '1.3.1'; // Make sure this is equal to the one in the plug-in header!
+
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
 	var $TITLE_PREFX = 'expand/collapse slider: ';
 	var $BUTTON_PREFIX = ''; // Slider button prefix
@@ -126,8 +128,8 @@ class HackadelicSliders
 
 	function embedPageScriptCode() {
 ?>
-<?php if ($this->notes) : ?>
-<!-- Hackadelic Sliding Notes, by http://hackadelic.com -->
+<?php if ($this->initjs) : ?>
+<!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
 <script type="text/javascript">
 function toggleSlider(target, source) {
 <?php /*
@@ -153,8 +155,9 @@ function initSlider(target, source) {
 	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('hidden');
 })();
 
-<?php endif ?>
 </script>
+<!-- END Hackadelic Sliding Notes -->
+<?php endif ?>
 <?php
 	}
 }

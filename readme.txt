@@ -26,6 +26,10 @@ Screenshots? Who needs screenshots, when you can see it in live action at the [p
 
 == Change Log ==
 
+#### 1.3.1 - Quick Fix Release
+
+A small glitch had slipped into the prior release that caused sliding notes to be "dead" (not expandable) on the fron page. This version fixes it.
+
 #### 1.3.0 - 'Presidential Oath' Release
 
 This release is packed with features that greatly ease the integration into existing website styles and concepts, as well as the combination of different usage patterns on the same site.
