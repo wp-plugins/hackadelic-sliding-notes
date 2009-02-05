@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.3.1
+Version: 1.4.0
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -25,7 +25,7 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 class HackadelicSliders
 {
-	var $VERSION = '1.3.1'; // Make sure this is equal to the one in the plug-in header!
+	var $VERSION = '1.4.0'; // Make sure this is equal to the one in the plug-in header!
 
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
 	var $TITLE_PREFX = 'expand/collapse slider: ';
@@ -40,7 +40,7 @@ class HackadelicSliders
 
 	function initialize() {
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
-		add_action('wp_footer', array(&$this, 'embedPageScriptCode'));
+		add_action('wp_footer', array(&$this, 'embedEpliogue'));
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
@@ -72,6 +72,9 @@ class HackadelicSliders
 			'shortcodes' => null,
 			), $atts ));
 
+		if ($shortcodes == 'on')
+			$content = do_shortcode($content); // do this early, so sliderID is consistent
+
 		$sliderID = ++$this->sliderID;
 		$noteID = "hackadelic-sliderNote-$sliderID";
 		$sliderID = "hackadelic-sliderPanel-$sliderID";
@@ -84,9 +87,6 @@ class HackadelicSliders
 				'',
 				$content );
 		}
-
-		if ($shortcodes == 'on')
-			$content = do_shortcode($content);
 
 		//$note = '<DIV id="'.$noteID.'" class="hidden hackadelic-sliderPanel">'.$content.'</DIV>';
 		$note = '<DIV id="'.$noteID.'" class="hidden">'.$content.'</DIV>';
@@ -126,10 +126,14 @@ class HackadelicSliders
 	// NOTE: Sliders need to be inited right away, 
 	// so other js libs can do their magic on the *target*, not the source element.
 
-	function embedPageScriptCode() {
+	function embedEpliogue() {
 ?>
 <?php if ($this->initjs) : ?>
 <!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
+<style type="text/css">
+.hidden { display: none }
+.block { display: block }
+</style>
 <script type="text/javascript">
 function toggleSlider(target, source) {
 <?php /*
@@ -141,7 +145,11 @@ function toggleSlider(target, source) {
 
 function initSlider(target, source) {
 	var t = jQuery(target);
-	if ( !t.data('hackadelized') ) {
+<?php
+	// t.length condition is a workaround for 
+	// weird behaviour @ http://rennert.at/faq/unterricht et.al.
+?>
+	if ( t.length && !t.data('hackadelized') ) {
 		var s = jQuery(source);
 		t.html( s.html() ).data('hackadelized', true);
 		s.replaceWith('');

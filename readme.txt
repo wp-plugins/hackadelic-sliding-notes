@@ -12,25 +12,21 @@ Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
-[The release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3") provides in-depth information about the 1.3 release.
+The release announcements (see the links below) provide in-depth information about the particular release.
 
-== Installation ==
+### Change Log
 
-1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
-1. Go to the Plugins page and activate the plugin.
-1. Go to *Settings->Hackadelic Sliding Notes* and follow the instructions there.
+#### [1.4.0 - 'Shadowchaser' Release](http://hackadelic.com/sliding-notes-1-4-shadowchaser-release "Sliding Notes 1.4 - Shadowchaser Release")
 
-== Screenshots ==
+Resolves a CSS conflict with the 'Shadowbox JS' plug-in, while at the same time relieving the user from housekeeping the CSS parts that are vital to Sliding Notes function, not their visual appearance.
 
-Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+>**Attention Shadowbox JS users**: If you commented out the '.hidden' clause in your 'extras.css' file, you need to **uncomment it again**. (Look for it in your 'wp-content/plugins/shadowbox-js/css/' folder.)
 
-== Change Log ==
-
-#### 1.3.1 - 'Presidential Bugfix' Release ;-)
+#### [1.3.1 'Presidential Bugfix' Release](http://hackadelic.com/sliding-notes-131-bugfix-release "Sliding Notes 1.3.1 - Presidential Bugfix Release")
 
 A small glitch had slipped into the prior release that caused sliding notes to be "dead" (not expandable) on the front page. This version fixes it.
 
-#### 1.3.0 - 'Presidential Oath' Release
+#### [1.3.0 - 'Presidential Oath' Release](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Sliding Notes 1.3.1 - Presidential Oath Release")
 
 This release is packed with features that greatly ease the integration into existing website styles and concepts, as well as the combination of different usage patterns on the same site.
 
@@ -80,6 +76,16 @@ Slight changes in the readme file only.
 #### 1.0rc2
 
 Initial public release
+
+== Installation ==
+
+1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
+1. Go to the Plugins page and activate the plugin.
+1. Go to *Settings->Hackadelic Sliding Notes* and follow the instructions there.
+
+== Screenshots ==
+
+Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
 
 == License ==
 
