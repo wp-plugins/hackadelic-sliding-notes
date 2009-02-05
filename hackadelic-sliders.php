@@ -199,10 +199,12 @@ function hackadelic_sliders_addAdminMenu() {
 //---------------------------------------------------------------------------------------------
 
 function hackadelic_sliders_displayAdminPage() {
-global $hackadelic_sliders_pluginTitle;
+	global $hackadelic_sliders_pluginTitle;
+	$slugHome = $slugWP = 'sliding-notes';
+	$admPageTitle = "$hackadelic_sliders_pluginTitle";
+	include 'hackadelic-sliders-admx.php';
 ?>
-<div class="wrap">
-<h2><?php echo $hackadelic_sliders_pluginTitle ?></h2>
+<div style="margin-right:180px">
 <p>
 To customize the look of your sliding notes,
 integrate the
@@ -226,6 +228,26 @@ Done that? Well then, that's it!
 <a href="http://hackadelic.com/solutions/wordpress/sliding-notes#configuration">Nothing more to configure</a>.
 </p>
 <p>Cheers and happy sliding!</p>
+<div style="border: 1px solid #ccc; background-color: navajowhite; padding: 5px">
+<h3>ATTENTION upgraders to version 1.4</h3>
+<p>
+With Sliding Notes versions prior to 1.4 you had to manually add
+<em>.hidden</em> and <em>.block</em> CSS clauses to your stylesheet.
+<strong>Please remove them again.</strong>
+As of Sliding Notes 1.4, these clauses are <em>automatically added</em> where needed.
+</p>
+<h3>ATTENTION Shadowbox JS users</h3>
+<p>
+If you have applied the
+<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#comment-152">conflict</a>
+<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#comment-156">workaround</a>,
+and commented out the <em>.hidden</em> clause in your <em>extras.css</em> file,
+you need to <strong>uncomment it again</strong>!
+(Look for it in the <em>wp-content/plugins/shadowbox-js/css/</em> folder.)
+</p>
+</div>
+</div>
+
 </div>
 <?php
 } //-- end function hackadelic_sliders_displayAdminPage

@@ -20,7 +20,11 @@ The release announcements (see the links below) provide in-depth information abo
 
 Resolves a CSS conflict with the 'Shadowbox JS' plug-in, while at the same time relieving the user from housekeeping the CSS parts that are vital to Sliding Notes function, not their visual appearance.
 
->**Attention Shadowbox JS users**: If you commented out the '.hidden' clause in your 'extras.css' file, you need to **uncomment it again**. (Look for it in your 'wp-content/plugins/shadowbox-js/css/' folder.)
+>**Attention upgraders to version 1.4**:
+With Sliding Notes versions prior to 1.4 you had to manually add .hidden and .block CSS clauses to your stylesheet. Please remove them again. As of Sliding Notes 1.4, these clauses are automatically added where needed.
+
+>**Attention Shadowbox JS users**:
+If you have applied the [conflict workaround](http://hackadelic.com/solutions/wordpress/sliding-notes#comment-156), and commented out the '.hidden' clause in your 'extras.css' file, you need to **uncomment it again**. (Look for it in your 'wp-content/plugins/shadowbox-js/css/' folder.)
 
 #### [1.3.1 'Presidential Bugfix' Release](http://hackadelic.com/sliding-notes-131-bugfix-release "Sliding Notes 1.3.1 - Presidential Bugfix Release")
 
