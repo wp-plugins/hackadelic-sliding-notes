@@ -12,7 +12,7 @@ Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
-The release announcements (see the links below) provide in-depth information about the particular release.
+The release announcements (see the links below) provide in-depth information about the particular releases.
 
 ### Change Log
 

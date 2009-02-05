@@ -21,7 +21,7 @@ $infomercials = array(
 		'icon' => "http://lh5.ggpht.com/_eYaV9fZ6qRg/SYj7lYcnwpI/AAAAAAAAAGU/VEJqpZPeMOc/s800/house.png" ),
 	array(
 		'text' => 'Comment it',
-		'url' => "http://hackadelic.com/solutions/wordpress/$slugHome#comments",
+		'url' => "http://hackadelic.com/solutions/wordpress/$slugHome#comment",
 		'icon' => "http://lh6.ggpht.com/_eYaV9fZ6qRg/SYj7etC7muI/AAAAAAAAAF0/K7EPBqbhKvc/s800/comment_edit.png" ),
 	array(
 		'text' => 'Rate it',

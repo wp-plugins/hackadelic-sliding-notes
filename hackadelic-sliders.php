@@ -40,6 +40,7 @@ class HackadelicSliders
 
 	function initialize() {
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
+		add_action('wp_head', array(&$this, 'embedPrologue'));
 		add_action('wp_footer', array(&$this, 'embedEpliogue'));
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
@@ -123,6 +124,18 @@ class HackadelicSliders
 	function _xstyle(&$style) { if ($style) $style = ' style="'.$style.'"'; }
 
 	//-------------------------------------------------------------------------------------
+	function embedPrologue() {
+?>
+<!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
+<style type="text/css">
+.hidden { display: none }
+.block { display: block }
+</style>
+<!-- END Hackadelic Sliding Notes -->
+<?php
+	}
+
+	//-------------------------------------------------------------------------------------
 	// NOTE: Sliders need to be inited right away, 
 	// so other js libs can do their magic on the *target*, not the source element.
 
@@ -130,10 +143,6 @@ class HackadelicSliders
 ?>
 <?php if ($this->initjs) : ?>
 <!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
-<style type="text/css">
-.hidden { display: none }
-.block { display: block }
-</style>
 <script type="text/javascript">
 function toggleSlider(target, source) {
 <?php /*
