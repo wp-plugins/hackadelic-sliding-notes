@@ -40,7 +40,7 @@ class HackadelicSliders
 
 	function initialize() {
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
-		add_action('wp_head', array(&$this, 'embedPrologue'));
+		add_action('wp_head', array(&$this, 'embedPrologue'), 99);
 		add_action('wp_footer', array(&$this, 'embedEpliogue'));
 		add_filter('the_content', array(&$this, 'preProcessContent'), 10);
 		add_shortcode('slider', array(&$this, 'doShortcode'));
@@ -126,6 +126,7 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 	function embedPrologue() {
 ?>
+
 <!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
 <style type="text/css">
 .hidden { display: none }
