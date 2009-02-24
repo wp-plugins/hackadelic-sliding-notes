@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.4.0
+Version: 1.4.1a
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -25,7 +25,7 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 class HackadelicSliders
 {
-	var $VERSION = '1.4.0'; // Make sure this is equal to the one in the plug-in header!
+	var $VERSION = '1.4.1a'; // Make sure this is equal to the one in the plug-in header!
 
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
 	var $TITLE_PREFX = 'expand/collapse slider: ';
@@ -39,6 +39,8 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function initialize() {
+		//add_shortcode('dummy', array(&$this, 'doDummyShortcode'));
+
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
 		add_action('wp_head', array(&$this, 'embedPrologue'), 99);
 		add_action('wp_footer', array(&$this, 'embedEpliogue'));
@@ -47,6 +49,11 @@ class HackadelicSliders
 		add_filter('the_content', array(&$this, 'postProcessContent'), 12);
 		// DO NOT preProcessContent with widget_text !
 		add_filter('widget_text', array(&$this, 'postProcessContent'), 12);
+	}
+	//-------------------------------------------------------------------------------------
+
+	function doDummyShortcode($atts, $content=null) {
+		return $content ? $content : '';
 	}
 
 	//-------------------------------------------------------------------------------------
@@ -115,7 +122,9 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function postProcessContent($content) {
-		return $content . $this->notes;
+		$notes = $this->notes;
+		$this->notes = '';
+		return $content . $notes;
 	}
 
 	//-------------------------------------------------------------------------------------
