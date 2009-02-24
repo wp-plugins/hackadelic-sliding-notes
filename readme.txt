@@ -16,6 +16,10 @@ The release announcements (see the links below) provide in-depth information abo
 
 ### Change Log
 
+#### 1.4.1a
+
+Attempt to find a workaround for themes that cause duplicate notes storage.
+
 #### [1.4.0 - 'Shadowchaser' Release](http://hackadelic.com/sliding-notes-1-4-shadowchaser-release "Sliding Notes 1.4 - Shadowchaser Release")
 
 Resolves a CSS conflict with the 'Shadowbox JS' plug-in, while at the same time relieving the user from housekeeping the CSS parts that are vital to Sliding Notes function, not their visual appearance.
