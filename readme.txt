@@ -16,9 +16,9 @@ The release announcements (see the links below) provide in-depth information abo
 
 ### Change Log
 
-#### 1.4.1a
+#### [1.4.1](http://hackadelic.com/sliding-notes-1-4-1-released)
 
-Attempt to find a workaround for themes that cause duplicate notes storage.
+Added workaround for themes that have shown a weird cross-browser issue in conjunction with Sliding Notes, such as [reported by Magnus](http://hackadelic.com/solutions/wordpress/sliding-notes#comment-390).
 
 #### [1.4.0 - 'Shadowchaser' Release](http://hackadelic.com/sliding-notes-1-4-shadowchaser-release "Sliding Notes 1.4 - Shadowchaser Release")
 
