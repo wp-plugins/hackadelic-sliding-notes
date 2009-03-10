@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 1.2.1
+Stable tag: 1.4.1
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
@@ -12,19 +12,41 @@ Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
-== Installation ==
+The release announcements (see the links below) provide in-depth information about the particular releases.
 
-1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
-1. Go to the Plugins page and activate the plugin.
-1. Go to *Settings->Hackadelic Sliding Notes* and follow the instructions there.
+### Change Log
 
-== Screenshots ==
+#### [1.4.1](http://hackadelic.com/sliding-notes-1-4-1-released)
 
-Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+Added workaround for themes that have shown a weird cross-browser issue in conjunction with Sliding Notes, such as [reported by Magnus](http://hackadelic.com/solutions/wordpress/sliding-notes#comment-390).
 
-== Change Log ==
+#### [1.4.0 - 'Shadowchaser' Release](http://hackadelic.com/sliding-notes-1-4-shadowchaser-release "Sliding Notes 1.4 - Shadowchaser Release")
 
-ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
+Resolves a CSS conflict with the 'Shadowbox JS' plug-in, while at the same time relieving the user from housekeeping the CSS parts that are vital to Sliding Notes function, not their visual appearance.
+
+>**Attention upgraders to version 1.4**:
+With Sliding Notes versions prior to 1.4 you had to manually add .hidden and .block CSS clauses to your stylesheet. Please remove them again. As of Sliding Notes 1.4, these clauses are automatically added where needed.
+
+>**Attention Shadowbox JS users**:
+If you have applied the [conflict workaround](http://hackadelic.com/solutions/wordpress/sliding-notes#comment-156), and commented out the '.hidden' clause in your 'extras.css' file, you need to **uncomment it again**. (Look for it in your 'wp-content/plugins/shadowbox-js/css/' folder.)
+
+#### [1.3.1 'Presidential Bugfix' Release](http://hackadelic.com/sliding-notes-131-bugfix-release "Sliding Notes 1.3.1 - Presidential Bugfix Release")
+
+A small glitch had slipped into the prior release that caused sliding notes to be "dead" (not expandable) on the front page. This version fixes it.
+
+#### [1.3.0 - 'Presidential Oath' Release](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Sliding Notes 1.3.1 - Presidential Oath Release")
+
+This release is packed with features that greatly ease the integration into existing website styles and concepts, as well as the combination of different usage patterns on the same site.
+
+* Many new shortcode arguments for easy integration into different website/usage concepts:
+  * inline CSS styles
+  * custom note types
+  * auto-expanded notes
+  * embedding shortcodes inside sliding notes
+* Improved interoperability with other JavaScript/AJAX libraries
+* Various cleanups and fixes
+
+For details, see [the release announcement](http://hackadelic.com/sliding-notes-1-3-hot-new-presidential-oath-release "Announcing Sliding Notes 1.3").
 
 #### 1.2.1
 
@@ -40,6 +62,7 @@ ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.
 * Compatibility fixes with older PHP versions
 
 #### 1.1.0
+ATTENTION: I had to rollback to 1.0rc5 due to cross-browser problems with the 1.1 series.
 
 A total rewrite:
 
@@ -61,6 +84,16 @@ Slight changes in the readme file only.
 #### 1.0rc2
 
 Initial public release
+
+== Installation ==
+
+1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
+1. Go to the Plugins page and activate the plugin.
+1. Go to *Settings->Hackadelic Sliding Notes* and follow the instructions there.
+
+== Screenshots ==
+
+Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
 
 == License ==
 
