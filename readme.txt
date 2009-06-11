@@ -16,7 +16,7 @@ The release announcements (see the links below) provide in-depth information abo
 
 ### Change Log
 
-#### [1.5.0 - "Accordion Virtuoso"](http://hackadelic.com/sliding-notes-1-5-0-released)
+#### [1.5.0 - "Accordion Virtuoso"](http://hackadelic.com/sliding-notes-1-5-0-accordion-virtuoso)
 
 * Cool new **grouping** feature: When a note is opened, all other notes in the same group are closed. Very handy for emulating an accordion-style effect, like [this one over here](http://hackadelic.com/services#things-i-do).
 * New shortcode argument *hint* to specify the text to display when hovering over the slider button.
