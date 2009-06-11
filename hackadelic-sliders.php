@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.4.1
+Version: 1.5.0
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -25,7 +25,7 @@ function hackadelic_shortcode_slider_usage($atts, $content=null) {
 
 class HackadelicSliders
 {
-	var $VERSION = '1.4.1'; // Make sure this is equal to the one in the plug-in header!
+	var $VERSION = '1.5.0'; // Make sure this is equal to the one in the plug-in header!
 
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
 	var $TITLE_PREFX = 'expand/collapse slider: ';
@@ -33,6 +33,7 @@ class HackadelicSliders
 	var $BUTTON_SUFFIX = '&raquo;'; // Slider button suffix
 
 	var $sliderID = 0; // unique per each page view, not globally unique
+	var $entryID = 0; // ID of the entry currently processed, or 0 (ex. when in widebar widgets)
 	var $notes = '';
 	var $initjs = '';
 
@@ -58,6 +59,8 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function preProcessContent($content) {
+		global $id;
+		$this->entryID = $id;
 		$this->notes = ''; // reset notes for this unit
 		return $content;
 	}
@@ -70,6 +73,8 @@ class HackadelicSliders
 			'type' => '',
 			'bstyle' => '',
 			'nstyle' => '',
+			'group' => '',
+			'hint' => '',
 			'shortcodes' => null,
 			), $atts ));
 
@@ -79,7 +84,6 @@ class HackadelicSliders
 		$sliderID = ++$this->sliderID;
 		$noteID = "hackadelic-sliderNote-$sliderID";
 		$sliderID = "hackadelic-sliderPanel-$sliderID";
-		$clickCode = "toggleSlider('#$sliderID', '#$noteID')";
 
 		if (preg_match('@</?p.*?>@si', $content)) {
 			$content = "<p>${content}</p>";
@@ -89,8 +93,8 @@ class HackadelicSliders
 				$content );
 		}
 
-		//$note = '<DIV id="'.$noteID.'" class="hidden hackadelic-sliderPanel">'.$content.'</DIV>';
-		$note = '<DIV id="'.$noteID.'" class="hidden">'.$content.'</DIV>';
+		//$note = '<DIV id="'.$noteID.'" class="concealed hackadelic-sliderPanel">'.$content.'</DIV>';
+		$note = '<DIV id="'.$noteID.'" class="concealed">'.$content.'</DIV>';
 		$this->notes .= $note;
 		$this->initjs .= "\n	initSlider('#$sliderID', '#$noteID');";
 
@@ -98,14 +102,26 @@ class HackadelicSliders
 		$bclass = $nclass = $type;
 		$this->_xstyle($bstyle);
 		$this->_xstyle($nstyle);
+		if (!$hint) $hint = $this->TITLE_PREFX . $title;
+
+		if ($group) {
+			$gid = $this->entryID;
+			$group = sanitize_title($group);
+			$group = "$group-$gid";
+			$nclass .= " $group";
+			//$clickCode = "jQuery('.$group').slideUp('fast'); $clickCode";
+			$clickCode = "toggleSliderOfGroup('.$group', '#$sliderID')";
+		}
+		else
+			$clickCode = "toggleSlider('#$sliderID')";
 
 		$substitute = ''
 			//.'<span class="hackadelic-slider>'
 			.'<a href="javascript:;" class="hackadelic-sliderButton'.$bclass.'"'.$bstyle
 			.'onclick="'.$clickCode.'"'
-			.' title="' . $this->TITLE_PREFX . $title.'">'
+			.' title="' . $hint .'">'
 			.$this->BUTTON_PREFIX . $title . $this->BUTTON_SUFFIX . '</a> '
-			.'<span class="hackadelic-sliderPanel hidden'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
+			.'<span class="hackadelic-sliderPanel concealed'.$nclass.'"'.$nstyle.' id="'.$sliderID.'">'
 			.'</span>'
 			//.'</span>'
 			;
@@ -115,6 +131,7 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function postProcessContent($content) {
+		$this->entryID = 0;
 		$notes = $this->notes;
 		$this->notes = '';
 		return $content . $notes;
@@ -131,7 +148,7 @@ class HackadelicSliders
 
 <!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
 <style type="text/css">
-.hidden { display: none }
+.concealed { display: none }
 .block { display: block }
 </style>
 <!-- END Hackadelic Sliding Notes -->
@@ -147,14 +164,17 @@ class HackadelicSliders
 <?php if ($this->initjs) : ?>
 <!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
 <script type="text/javascript">
-function toggleSlider(target, source) {
-<?php /*
-	var t = initSlider(target, source)
-	t.slideToggle('fast');
-*/?>
+function toggleSlider(target) {
 	jQuery(target).slideToggle('fast');
 }
-
+function toggleSliderOfGroup(group, target) {
+	var t = jQuery(target);
+	if (t.css('display') == 'none') {
+		var g = jQuery(group);
+		g.slideUp('fast');
+	}
+	t.slideToggle('fast');
+}
 function initSlider(target, source) {
 	var t = jQuery(target);
 <?php
@@ -163,7 +183,7 @@ function initSlider(target, source) {
 ?>
 	if ( t.length && !t.data('hackadelized') ) {
 		var s = jQuery(source);
-		t.html( s.html() ).data('hackadelized', true);
+		t.html( s.html() ); t.data('hackadelized', true);
 		s.replaceWith('');
 	}
 	return t;
@@ -171,8 +191,8 @@ function initSlider(target, source) {
 
 (function(){<?php echo $this->initjs ?>
 
-	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').addClass('block').hide().removeClass('hidden');
-	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('hidden');
+	jQuery('.hackadelic-sliderPanel:not(.auto-expand)').addClass('block').hide().removeClass('concealed');
+	jQuery('.hackadelic-sliderPanel.auto-expand').addClass('block').removeClass('concealed');
 })();
 
 </script>

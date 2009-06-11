@@ -3,7 +3,7 @@ Contributors: Hackadelic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1805414
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
-Tested up to: 2.7
+Tested up to: 2.8
 Stable tag: 1.4.1
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
@@ -15,6 +15,13 @@ Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/slidi
 The release announcements (see the links below) provide in-depth information about the particular releases.
 
 ### Change Log
+
+#### [1.5.0 - "Accordion Virtuoso"](http://hackadelic.com/sliding-notes-1-5-0-released)
+
+* Cool new **grouping** feature: When a note is opened, all other notes in the same group are closed. Very handy for emulating an accordion-style effect, like [this one over here](http://hackadelic.com/services#things-i-do).
+* New shortcode argument *hint* to specify the text to display when hovering over the slider button.
+* Changed CSS that tended to conflict with some other plugins.
+* Verified WordPress 2.8 compatibility.
 
 #### [1.4.1](http://hackadelic.com/sliding-notes-1-4-1-released)
 
