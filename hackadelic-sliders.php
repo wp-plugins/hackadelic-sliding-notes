@@ -2,30 +2,23 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.5.0
+Version: 1.6.0
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
 Author URI: http://hackadelic.com
 */
 //---------------------------------------------------------------------------------------------
-
-add_shortcode('slider_usage', 'hackadelic_shortcode_slider_usage');
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_shortcode_slider_usage($atts, $content=null) {
-	return '<pre>'
-		.'[slider title=&quot;<em>slider button title</em>&quot;]<em>sliding note content</em>[/slider]'
-		.'</pre>'
-		;
-}
-
-//---------------------------------------------------------------------------------------------
+add_action('plugins_loaded', array('HackadelicSliders', 'start'));
 
 class HackadelicSliders
 {
-	var $VERSION = '1.5.0'; // Make sure this is equal to the one in the plug-in header!
+	var $info = array( // Make sure this is equal to the information in the plug-in header!
+		'title' => 'Hackadelic Sliding Notes',
+		'version' => '1.6.0',
+		'slug' => 'sliding-notes');
+
+	//-------------------------------------------------------------------------------------
 
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
 	var $TITLE_PREFX = 'expand/collapse slider: ';
@@ -39,7 +32,23 @@ class HackadelicSliders
 
 	//-------------------------------------------------------------------------------------
 
-	function initialize() {
+	function start() {
+		new HackadelicSliders();
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	function HackadelicSliders() {
+		if (is_admin())
+			$this->initAdmin();
+		else
+			$this->initPublic();
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	function initPublic() {
+	
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
 		add_action('wp_head', array(&$this, 'embedPrologue'), 99);
 		add_action('wp_footer', array(&$this, 'embedEpliogue'));
@@ -93,8 +102,8 @@ class HackadelicSliders
 				$content );
 		}
 
-		//$note = '<DIV id="'.$noteID.'" class="concealed hackadelic-sliderPanel">'.$content.'</DIV>';
-		$note = '<DIV id="'.$noteID.'" class="concealed">'.$content.'</DIV>';
+		//$note = '<div id="'.$noteID.'" class="concealed hackadelic-sliderPanel">'.$content.'</div>';
+		$note = '<div id="'.$noteID.'" class="concealed">'.$content.'</div>';
 		$this->notes .= $note;
 		$this->initjs .= "\n	initSlider('#$sliderID', '#$noteID');";
 
@@ -144,14 +153,14 @@ class HackadelicSliders
 
 	//-------------------------------------------------------------------------------------
 	function embedPrologue() {
+		$plugin = (object) $this->info;
 ?>
-
-<!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
+<!-- BEGIN <?php echo "$plugin->title $plugin->version" ?> -->
 <style type="text/css">
 .concealed { display: none }
 .block { display: block }
 </style>
-<!-- END Hackadelic Sliding Notes -->
+<!-- END <?php echo "$plugin->title $plugin->version" ?> -->
 <?php
 	}
 
@@ -160,9 +169,10 @@ class HackadelicSliders
 	// so other js libs can do their magic on the *target*, not the source element.
 
 	function embedEpliogue() {
+		$plugin = (object) $this->info;
 ?>
 <?php if ($this->initjs) : ?>
-<!-- BEGIN Hackadelic Sliding Notes <?php echo $this->VERSION ?>, by http://hackadelic.com -->
+<!-- BEGIN <?php echo "$plugin->title $plugin->version" ?> -->
 <script type="text/javascript">
 function toggleSlider(target) {
 	jQuery(target).slideToggle('fast');
@@ -196,92 +206,33 @@ function initSlider(target, source) {
 })();
 
 </script>
-<!-- END Hackadelic Sliding Notes -->
+<!-- END <?php echo "$plugin->title $plugin->version" ?> -->
 <?php endif ?>
-<?php
+<?php include 'common/xsig.php';
+	}
+
+	//=====================================================================================
+	// ADMIN
+	//=====================================================================================
+
+	function initAdmin() {
+		add_action('admin_menu', array(&$this, 'addAdminMenu'));
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	function addAdminMenu() {
+		//$title = 'Hackadelic Sliding Notes';
+		$title = 'Sliding Notes';
+		add_options_page($title, $title, 10, __FILE__, array(&$this, 'handleOptions'));
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	function handleOptions() {
+		$plugin = (object) $this->info;
+		include 'template.settings.php';
 	}
 }
-
-//---------------------------------------------------------------------------------------------
-
-if (!is_admin()) {
-	$hackadelicSliders = new HackadelicSliders();
-	$hackadelicSliders->initialize();
-}
-
-// ===========================================================================
-// Admin Pages
-// ===========================================================================
-
-add_action('admin_menu', 'hackadelic_sliders_addAdminMenu');
-
-//---------------------------------------------------------------------------------------------
-
-$hackadelic_sliders_pluginTitle = 'Hackadelic Sliding Notes';
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_sliders_addAdminMenu() {
-	global $hackadelic_sliders_pluginTitle;
-	add_options_page(
-		$hackadelic_sliders_pluginTitle, $hackadelic_sliders_pluginTitle, 10, 
-		__FILE__, 'hackadelic_sliders_displayAdminPage');
-}
-
-//---------------------------------------------------------------------------------------------
-
-function hackadelic_sliders_displayAdminPage() {
-	global $hackadelic_sliders_pluginTitle;
-	$slugHome = $slugWP = 'sliding-notes';
-	$admPageTitle = "$hackadelic_sliders_pluginTitle";
-	include 'hackadelic-sliders-admx.php';
-?>
-<div style="margin-right:180px">
-<p>
-To customize the look of your sliding notes,
-integrate the
-<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#sample-css">sample CSS code</a>
-from the
-<a href="http://hackadelic.com/solutions/wordpress/sliding-notes">plugin homepage</a>
-into your stylesheet(s), and adjust it as you see fit.
-</p>
-<p><em><strong>Important note:</strong>
-Plug-in updates may require changes in the CSS, so please align your CSS with the <a href="http://hackadelic.com/solutions/wordpress/sliding-notes#sample-css">sample CSS code</a> whenever you upgrade.
-</em>
-</p>
-<p>
-If you don't want to mess around with your theme's <code>style.css</code> file,
-consider using the <a href="http://wordpress.org/extend/plugins/mycss/">MyCSS plugin</a>,
-which will enable you to add/edit extra CSS definitions
-from within the WordPress admin interface.
-</p>
-<p>
-Done that? Well then, that's it! 
-<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#configuration">Nothing more to configure</a>.
-</p>
-<p>Cheers and happy sliding!</p>
-<div style="border: 1px solid #ccc; background-color: navajowhite; padding: 5px">
-<h3>ATTENTION upgraders to version 1.4</h3>
-<p>
-With Sliding Notes versions prior to 1.4 you had to manually add
-<em>.hidden</em> and <em>.block</em> CSS clauses to your stylesheet.
-<strong>Please remove them again.</strong>
-As of Sliding Notes 1.4, these clauses are <em>automatically added</em> where needed.
-</p>
-<h3>ATTENTION Shadowbox JS users</h3>
-<p>
-If you have applied the
-<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#comment-152">conflict</a>
-<a href="http://hackadelic.com/solutions/wordpress/sliding-notes#comment-156">workaround</a>,
-and commented out the <em>.hidden</em> clause in your <em>extras.css</em> file,
-you need to <strong>uncomment it again</strong>!
-(Look for it in the <em>wp-content/plugins/shadowbox-js/css/</em> folder.)
-</p>
-</div>
-</div>
-
-</div>
-<?php
-} //-- end function hackadelic_sliders_displayAdminPage
 
 ?>

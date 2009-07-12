@@ -8,13 +8,21 @@ Stable tag: 1.5.0
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
+
 == Description ==
 
 Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
 The release announcements (see the links below) provide in-depth information about the particular releases.
 
-### Change Log
+
+== Changelog ==
+
+#### [1.6.0 - "W3C Tribute"](http://hackadelic.com/sliding-notes-1-6-w3c-tribute)
+
+* Fixes a slight XHTML standard violation.
+* Various code improvements.
+* License change from GPL to AGPL (see [Other Notes](../other_notes)).
 
 #### [1.5.0 - "Accordion Virtuoso"](http://hackadelic.com/sliding-notes-1-5-0-accordion-virtuoso)
 
@@ -92,27 +100,31 @@ Slight changes in the readme file only.
 
 Initial public release
 
+
 == Installation ==
 
 1. Upload the whole plugin folder to your /wp-content/plugins/ folder.
 1. Go to the Plugins page and activate the plugin.
 1. Go to *Settings->Hackadelic Sliding Notes* and follow the instructions there.
 
+
 == Screenshots ==
 
-Screenshots? Who needs screenshots, when you can see it in live action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+Screenshots? Who needs screenshots, when you can see it live in action at the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes")?
+
 
 == License ==
 
-This file is part of the *Hackadelic Sliders* WordPress plugin.
+This file is part of the *Hackadelic Sliding Notes* WordPress plugin.
 
-*Hackadelic Sliders* is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+*Hackadelic Sliding Notes* is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-*Hackadelic Sliders* is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+*Hackadelic Sliding Notes* is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with *Hackadelic Sliders*. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU Affero General Public License along with *Hackadelic Sliding Notes*. If not, see <http://www.gnu.org/licenses/>.
 
-== Frequently Asked Questions ==
+
+== Frequently Asked Questions =	=
 
 = How do I use the plug-in? =
 
