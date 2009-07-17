@@ -18,6 +18,10 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 == Changelog ==
 
+### 1.6.1
+
+* Fixed a deployment error (missing back-end file).
+
 #### [1.6.0 - "W3C Tribute"](http://hackadelic.com/sliding-notes-1-6-w3c-tribute)
 
 * Fixes a slight XHTML standard violation.
