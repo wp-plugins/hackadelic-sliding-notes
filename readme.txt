@@ -18,6 +18,10 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 == Changelog ==
 
+### 1.6.2 - "More W3C"
+
+* More XHTML standard conformance.
+
 ### 1.6.1
 
 * Fixed a deployment error (missing back-end file).
