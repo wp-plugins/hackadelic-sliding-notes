@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
 Tested up to: 2.8.1
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
