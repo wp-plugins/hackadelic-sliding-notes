@@ -18,16 +18,16 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 == Changelog ==
 
-### 1.6.2.1 - "UnRegular Express"
+#### 1.6.2.1 - "UnRegular Express"
 
 * Workaround for a glitch in regular expression handling that caused flawed patterns matching behavior in some PHP environments/versions, which again caused some notes to render wrongly.
 * WP 2.8.4 compatibility verified.
 
-### 1.6.2 - "More W3C"
+#### 1.6.2 - "More W3C"
 
 * More XHTML standard conformance.
 
-### 1.6.1
+#### 1.6.1
 
 * Fixed a deployment error (missing back-end file).
 
