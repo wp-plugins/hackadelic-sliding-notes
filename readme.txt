@@ -3,7 +3,7 @@ Contributors: Hackadelic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1805414
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
-Tested up to: 2.8.1
+Tested up to: 2.8.4
 Stable tag: 1.6.2.1
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
@@ -21,6 +21,7 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 ### 1.6.2.1 - "UnRegular Express"
 
 * Workaround for a glitch in regular expression handling that caused flawed patterns matching behavior in some PHP environments/versions, which again caused some notes to render wrongly.
+* 2.8.4 compatibility verified.
 
 ### 1.6.2 - "More W3C"
 
