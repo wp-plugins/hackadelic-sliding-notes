@@ -5,6 +5,7 @@ if ( !isset($this) || !is_a($this, HackadelicSliders) )
 	exit("Invalid operation context.");
 ?>
 <div class="wrap">
+	<div id="icon-options-general" class="icon32"><br /></div>
 	<h2><?php echo $plugin->title ?></h2>
 <?php
 	$slugHome = $slugWP = $plugin->slug;

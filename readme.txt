@@ -18,6 +18,16 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 == Changelog ==
 
+#### 1.6.3+
+
+* More bugfixes and improvements
+
+#### 1.6.3
+
+* Verified compatibility with WP 2.8.5
+* Added small signature to notes
+* Several minor fixes and improvements
+
 #### 1.6.2.1 - "UnRegular Express"
 
 * Workaround for a glitch in regular expression handling that caused flawed patterns matching behavior in some PHP environments/versions, which again caused some notes to render wrongly.
@@ -130,11 +140,11 @@ Screenshots? Who needs screenshots, when you can see it live in action at the [p
 
 This file is part of the *Hackadelic Sliding Notes* WordPress plugin.
 
-*Hackadelic Sliding Notes* is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+*Hackadelic Sliding Notes* is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](http://creativecommons.org/licenses/GPL/2.0/) as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
 
-*Hackadelic Sliding Notes* is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+*Hackadelic Sliding Notes* is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU Affero General Public License along with *Hackadelic Sliding Notes*. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with *Hackadelic Sliding Notes*. If not, see <http://www.gnu.org/licenses/>.
 
 
 == Frequently Asked Questions =	=
