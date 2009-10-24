@@ -101,8 +101,7 @@ class HackadelicSliders
 				$content );
 		endif;
 
-		$logo = "Powered by ".$this->info['title']." ".$this->info['version'];
-		$content .= '<span class="hackadelic-sliderLogo"><a href="http://hackadelic.com/solutions/wordpress/sliding-notes" title="'.$logo.'">'.$logo.'</a></span>';
+		$content .= $this->signature();
 
 		//$note = '<div id="'.$noteID.'" class="concealed hackadelic-sliderPanel">'.$content.'</div>';
 		$note = '<div id="'.$noteID.'" class="concealed">'.$content.'</div>';
@@ -153,6 +152,12 @@ class HackadelicSliders
 	function _xclass(&$class) { if ($class) $class = ' '.$class; }
 	function _xstyle(&$style) { if ($style) $style = ' style="'.$style.'"'; }
 
+	function signature() {
+		$s = $this->info['slug'];
+		$t = "Powered by ".$this->info['title']." ".$this->info['version'];
+		return '<span style="display: block; margin-top: 3px; font-size: 7px"><a href="http://hackadelic.com/solutions/wordpress/'.$s.'" title="'.$t.'">'.$t.'</a></span>';
+	}
+
 	//-------------------------------------------------------------------------------------
 	function embedPrologue() {
 		$plugin = (object) $this->info;
@@ -161,7 +166,6 @@ class HackadelicSliders
 <style type="text/css">
 .concealed { display: none }
 .block { display: block }
-.hackadelic-sliderLogo { display: block; margin-top: 3px; font-size: 7px }
 </style>
 <!-- END <?php echo "$plugin->title $plugin->version" ?> -->
 <?php
