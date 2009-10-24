@@ -21,7 +21,7 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 #### 1.6.3
 
 * Verified compatibility with WP 2.8.5
-* Added small logo to notes
+* Added small signature to notes
 * Several minor fixes and improvements
 
 #### 1.6.2.1 - "UnRegular Express"
