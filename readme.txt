@@ -3,8 +3,8 @@ Contributors: Hackadelic
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1805414
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
-Tested up to: 2.8.4
-Stable tag: 1.6.2.1
+Tested up to: 2.8.5
+Stable tag: 1.6.3
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
