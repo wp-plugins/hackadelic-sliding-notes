@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.6.2.1
+Version: 1.6.3
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -15,13 +15,13 @@ class HackadelicSliders
 {
 	var $info = array( // Make sure this is equal to the information in the plug-in header!
 		'title' => 'Hackadelic Sliding Notes',
-		'version' => '1.6.2.1',
+		'version' => '1.6.3',
 		'slug' => 'sliding-notes');
 
 	//-------------------------------------------------------------------------------------
 
 	var $DEFAULT_TITLE = '+/-'; // Slider button title
-	var $TITLE_PREFX = 'expand/collapse slider: ';
+	var $TITLE_PREFIX = 'expand/collapse slider: ';
 	var $BUTTON_PREFIX = ''; // Slider button prefix
 	var $BUTTON_SUFFIX = '&raquo;'; // Slider button suffix
 
@@ -48,7 +48,6 @@ class HackadelicSliders
 	//-------------------------------------------------------------------------------------
 
 	function initPublic() {
-	
 		add_action('wp_print_scripts', array(&$this, 'enqueueScripts'));
 		add_action('wp_head', array(&$this, 'embedPrologue'), 99);
 		add_action('wp_footer', array(&$this, 'embedEpliogue'));
@@ -94,13 +93,16 @@ class HackadelicSliders
 		$noteID = "hackadelic-sliderNote-$sliderID";
 		$sliderID = "hackadelic-sliderPanel-$sliderID";
 
-		if (preg_match('@</?p.*?>@si', $content)) {
-			$content = "<p>${content}</p>";
+		if (preg_match('@</?p.*?>@si', $content)):
+			$content = "<p>$content</p>";
 			$content = preg_replace(
-				'@<p[^>]*?></p>$@i',
+				'@<p[^>]*?><\/p>$@i',
 				'',
 				$content );
-		}
+		endif;
+
+		$logo = "Powered by ".$this->info['title']." ".$this->info['version'];
+		$content .= '<span class="hackadelic-sliderLogo"><a href="http://hackadelic.com/solutions/wordpress/sliding-notes" title="'.$logo.'">'.$logo.'</a></span>';
 
 		//$note = '<div id="'.$noteID.'" class="concealed hackadelic-sliderPanel">'.$content.'</div>';
 		$note = '<div id="'.$noteID.'" class="concealed">'.$content.'</div>';
@@ -113,16 +115,16 @@ class HackadelicSliders
 		$this->_xstyle($nstyle);
 		if (!$hint) $hint = $this->TITLE_PREFX . $title;
 
-		if ($group) {
+		if ($group):
 			$gid = $this->entryID;
 			$group = sanitize_title($group);
 			$group = "$group-$gid";
 			$nclass .= " $group";
 			//$clickCode = "jQuery('.$group').slideUp('fast'); $clickCode";
 			$clickCode = "toggleSliderOfGroup('.$group', '#$sliderID')";
-		}
-		else
+		else:
 			$clickCode = "toggleSlider('#$sliderID')";
+		endif;
 
 		$substitute = ''
 			//.'<span class="hackadelic-slider>'
@@ -159,6 +161,7 @@ class HackadelicSliders
 <style type="text/css">
 .concealed { display: none }
 .block { display: block }
+.hackadelic-sliderLogo { display: block; margin-top: 3px; font-size: 7px }
 </style>
 <!-- END <?php echo "$plugin->title $plugin->version" ?> -->
 <?php
