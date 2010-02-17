@@ -3,8 +3,8 @@ Contributors: Hackadelic
 Donate link: http://hackadelic.com/donations
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
-Tested up to: 2.8.5
-Stable tag: 1.6.3.1
+Tested up to: 2.9.2
+Stable tag: 1.6.4
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
@@ -17,6 +17,11 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 
 == Changelog ==
+
+#### 1.6.4
+
+* Fixing an include path issue that appeared in some (rare) server environments
+* Verifying compatibiltiy with WP 2.9.2
 
 #### 1.6.3.1
 
