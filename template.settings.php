@@ -9,7 +9,7 @@ if ( !isset($this) || !is_a($this, HackadelicSliders) )
 	<h2><?php echo $plugin->title ?></h2>
 <?php
 	$slugHome = $slugWP = $plugin->slug;
-	include 'common/xadm.php'
+	include dirname(__FILE__) . '/common/xadm.php'
 ?>
 	<div style="margin-right:180px">
 		<p>

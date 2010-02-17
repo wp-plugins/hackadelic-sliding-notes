@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------------
 /*
 Plugin Name: Hackadelic Sliding Notes
-Version: 1.6.3.1
+Version: 1.6.4
 Plugin URI: http://hackadelic.com/solutions/wordpress/sliding-notes
 Description: Ajax sliders for content fragments
 Author: Hackadelic
@@ -15,7 +15,7 @@ class HackadelicSliders
 {
 	var $info = array( // Make sure this is equal to the information in the plug-in header!
 		'title' => 'Hackadelic Sliding Notes',
-		'version' => '1.6.3+',
+		'version' => '1.6.4',
 		'slug' => 'sliding-notes');
 
 	//-------------------------------------------------------------------------------------
@@ -215,7 +215,7 @@ function initSlider(target, source) {
 //]]></script>
 <!-- END <?php echo "$plugin->title $plugin->version" ?> -->
 <?php endif ?>
-<?php include 'common/xsig.php';
+<?php include dirname(__FILE__) . '/common/xsig.php';
 	}
 
 	//=====================================================================================
