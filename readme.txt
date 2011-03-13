@@ -3,20 +3,56 @@ Contributors: Hackadelic
 Donate link: http://hackadelic.com/donations
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
-Tested up to: 2.9.2
-Stable tag: 1.6.4
+Tested up to: 3.1
+Stable tag: 1.6.5
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
 
 == Description ==
 
-Check out the [plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
+Check out the [Sliding Notes plug-in homepage](http://hackadelic.com/solutions/wordpress/sliding-notes "Sliding Notes") for in-depth information about the plug-in.
 
 The release announcements (see the links in the [Changelog](changelog)) provide in-depth information about the particular releases.
 
+>**Attention**
+
+>Version 1.6.5 is presumably **the very last release in the 1st generation of Sliding Notes**. Development of the **next generation** is taking over on a [brand new shiny website](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
+
+>The next generation of Sliding Notes is being rewritten from scratch, based on an entirely new concept that will enable cool features like linkability, sinnability, and more.
+
+>Naturally, it will be inevitable that some of the things will work differently than before, so users may have to adapt this or that (most probably CSS code).
+
+>You should connect with development for early access to information
+about upcoming changes and compatibility workarounds that may arise from them.
+
+>[Click here to connect and apply for early access](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
 
 == Changelog ==
+
+#### [1.6.5 - "Look Before You Leap"](http://slidingnotes.hackadelic.com/about)
+
+* Verifying WP 3.1 compatibility
+* Security improvement
+* Introducing *next generation* development
+
+>**Attention**
+
+>Version 1.6.5 is presumably **the very last release in the 1st generation of Sliding Notes**.
+Development of the **next generation** is taking over on a
+[brand new shiny website](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
+
+>The next generation of Sliding Notes is being rewritten from scratch,
+based on an entirely new concept that will enable cool features like linkability, sinnability, and more.
+
+>Naturally, it will be inevitable that some of the things will work differently than before,
+so users may have to adapt this or that (most probably CSS code).
+
+>You should connect with development for early access to information
+about upcoming changes and compatibility workarounds that may arise from them.
+
+>[Click here to connect and apply for early access](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
+
 
 #### 1.6.4
 
@@ -168,4 +204,4 @@ This was a deliberate decision, with the following reasoning:
 
 = I love your work, are you available for hire? =
 
-Yes I am. [Contact me](http://hackadelic.com/contact) to "talk turkey" :) 
+Yes I am. [Contact me](http://hackadelic.com/contact) to "talk turkey" :)
