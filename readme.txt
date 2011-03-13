@@ -4,7 +4,7 @@ Donate link: http://hackadelic.com/donations
 Tags: shortcode, AJAX, post, page, content, slide
 Requires at least: 2.6
 Tested up to: 3.1
-Stable tag: 1.6.5
+Stable tag: trunk
 
 Ajax sliders for content fragments. Fancy replacement for foot- and other notes.
 
