@@ -30,7 +30,7 @@ about upcoming changes and compatibility workarounds that may arise from them.
 
 == Changelog ==
 
-#### [1.6.5 - "Look Before You Leap"](http://slidingnotes.hackadelic.com/about)
+#### [1.6.5 - "Look Before You Leap"](http://slidingnotes.hackadelic.com)
 
 * Verifying WP 3.1 compatibility
 * Security improvement
