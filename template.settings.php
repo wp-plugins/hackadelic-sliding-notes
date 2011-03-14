@@ -17,7 +17,7 @@ if ( !isset($this) || !is_a($this, HackadelicSliders) )
 			<span style="float:right"><a href="#" title="close" style="text-decoration:none" onclick="jQuery('#important-notice').fadeOut('slow'); return false;">x</a></span>
 			<h3>IMPORTANTE NOTICE</h3>
 			  <p>Version 1.6.5 is presumably <strong>the very last release in the 1st generation of Sliding Notes</strong>. Development of the <strong>next generation</strong> is taking over on a <a href="http://slidingnotes.hackadelic.com/" title="Sliding Note's Development Website">brand new shiny website</a>.</p>
-			  <p>The next generation of Sliding Notes is being rewritten from scratch, based on an entirely new concept that will enable cool features like linkability, sinnability, and more.</p>
+			  <p>The next generation of Sliding Notes is being rewritten from scratch, based on an entirely new concept that will enable cool features like linkability, skinnability, and more.</p>
 			  <p>Naturally, it will be inevitable that some of the things will work differently than before, so users may have to adapt this or that (most probably CSS code).</p>
 			  <p>You should connect with development for early access to information
 			  about upcoming changes and compatibility workarounds that may arise from them.</p>

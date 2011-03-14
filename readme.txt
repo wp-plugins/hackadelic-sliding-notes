@@ -19,7 +19,7 @@ The release announcements (see the links in the [Changelog](changelog)) provide 
 
 >Version 1.6.5 is presumably **the very last release in the 1st generation of Sliding Notes**. Development of the **next generation** is taking over on a [brand new shiny website](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
 
->The next generation of Sliding Notes is being rewritten from scratch, based on an entirely new concept that will enable cool features like linkability, sinnability, and more.
+>The next generation of Sliding Notes is being rewritten from scratch, based on an entirely new concept that will enable cool features like linkability, skinnability, and more.
 
 >Naturally, it will be inevitable that some of the things will work differently than before, so users may have to adapt this or that (most probably CSS code).
 
@@ -43,7 +43,7 @@ Development of the **next generation** is taking over on a
 [brand new shiny website](http://slidingnotes.hackadelic.com/ "Sliding Note's Development Website").
 
 >The next generation of Sliding Notes is being rewritten from scratch,
-based on an entirely new concept that will enable cool features like linkability, sinnability, and more.
+based on an entirely new concept that will enable cool features like linkability, skinnability, and more.
 
 >Naturally, it will be inevitable that some of the things will work differently than before,
 so users may have to adapt this or that (most probably CSS code).
